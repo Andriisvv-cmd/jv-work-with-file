@@ -27,21 +27,21 @@ public class WorkWithFile {
                 }
                 value = reader.readLine();
             }
-
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(toFileName))) {
-                writer.write("supply," + supplySum);
-                writer.newLine();
-                writer.write("buy," + buySum);
-                writer.newLine();
-                writer.write("result," + (supplySum - buySum));
-
-            } catch (IOException e) {
-                throw new RuntimeException("Can't write in the file ", e);
-            }
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Can't find file ", e);
         } catch (IOException e) {
             throw new RuntimeException("Can't read file ", e);
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(toFileName))) {
+            writer.write("supply," + supplySum);
+            writer.newLine();
+            writer.write("buy," + buySum);
+            writer.newLine();
+            writer.write("result," + (supplySum - buySum));
+
+        } catch (IOException e) {
+            throw new RuntimeException("Can't write in the file ", e);
         }
     }
 }
